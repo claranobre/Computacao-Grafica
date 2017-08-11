@@ -3,22 +3,21 @@
 
 using namespace std;
 
-int main(){
-  ofstream myfile;
-  myfile.open("background.ppm");
-
-  int n_cols = 200;
-  int n_rows = 100;
-
-  /*string file_name("background.ppm");
+int main(int argc, char** argv){
+  string file_name("background.ppm");
   ofstream ofs_file(file_name, ios::out | ios::ascii);
 
   if(not ofs_file.is_open()){
     cerr <<  ">> Failed with attemping to open image file \'" << file_name >
     return EXIT_FAILURE;
-  }*/
+  }else{
+    FILE *ofs_file = fopen( argv[1], "r" );
+  }
 
-  myfile << "P3\n" << n_cols << " " << n_rows << "\n255\n";
+  int n_cols = 200;
+  int n_rows = 100;
+
+  ofs_file << "P3\n" << n_cols << " " << n_rows << "\n255\n";
 
   for(int j = n_rows - 1; j>= 0; j--){
     for(int i = 0; i < n_cols; i++){
@@ -30,11 +29,10 @@ int main(){
       int ig = int(255.99 * g);
       int ib = int(255.99 * b);
 
-      myfile << ir << " " << ig << " " << ib << "\n";
+      ofs_file << ir << " " << ig << " " << ib << "\n";
     }
   }
-
-  myfile.close();
+  ofs_file.close();
   return 0;
 
   /*ofs_file << "P6\n";
