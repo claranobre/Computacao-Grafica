@@ -1,9 +1,21 @@
 #include <iostream>
 #include <fstream>
 
+#define NAME
+#define TYPE
+#define CODIFICATION
+#define WIDTH
+#define HEIGHT
+#define UPPER_LEFT
+#define LOWER_LEFT
+#define UPPER_RIGHT
+#define LOWER_RIGHT
+
 using namespace std;
 
 int main(int argc, char** argv){
+  char letter;
+  FILE *ofs_file = fopen( argv[1], "r" );
   string file_name("background.ppm");
   ofstream ofs_file(file_name, ios::out | ios::ascii);
 
@@ -11,7 +23,10 @@ int main(int argc, char** argv){
     cerr <<  ">> Failed with attemping to open image file \'" << file_name >
     return EXIT_FAILURE;
   }else{
-    FILE *ofs_file = fopen( argv[1], "r" );
+    while (ofs_file.get(letter)){
+      cout << letter;
+    }
+    letter.close();
   }
 
   int n_cols = 200;
