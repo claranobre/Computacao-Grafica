@@ -9,11 +9,6 @@ vec3 color(const ray& r){
   float t = 0.5 * (unit_direction.y() + 1.0);
     return (1.0 - t) * vec3(1.0,1.0,1.0) + t * vec3(0.5, 0.7, 1.0);
 }
-/*vec3 color(const ray& r){
-  vec3 unit_direction = unit_vector(r.direction());
-  float t = 0.5*(unit_direction.y() + 1.0);
-  return (1.0-y)*vec3(1.0,1.0,1.0) + t * vec3(0.5, 0.7, 1.0);
-}*/
 
 int main(){
   int nx = 200;
@@ -36,9 +31,9 @@ int main(){
       ray r(origin, lower_left_corner + u * horizontal + v * vertical);
       vec3 col = color(r);
 
-      int ir = int(255.99 * col[0]);
-      int ig = int(255.99 * col[1]);
-      int ib = int(255.99 * col[2]);
+      vec3 ir = int(255.99 * col[R]);
+      vec3 ig = int(255.99 * col[G]);
+      vec3 ib = int(255.99 * col[B]);
 
       arquivo << ir << " " << ig << " " << ib << "\n";
     }
