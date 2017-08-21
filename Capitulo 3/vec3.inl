@@ -24,7 +24,7 @@ inline void vec3::make_unit_vector( void )
      auto v_dot_v = e[X]*e[X] + e[Y]*e[Y] + e[Z]*e[Z] ;
      // make sure we divide by zero here.
      assert( fabs( v_dot_v - 0.f ) > 0.000001 );
-     value_type_t k = 1.f/ sqrt( v_dot_v );
+     value_type k = 1.f/ sqrt( v_dot_v );
      e[X] *= k;
      e[Y] *= k;
      e[Z] *= k;
@@ -84,7 +84,7 @@ inline vec3 operator/( const vec3 & v1, const vec3 & v2 )
 }
 
 // Uso: V * 4
-inline vec3 operator*( const vec3 & v, vec3::value_type_t t )
+inline vec3 operator*( const vec3 & v, vec3::value_type t )
 {
     return vec3( v.e[vec3::X] * t,
                  v.e[vec3::Y] * t,
@@ -92,21 +92,21 @@ inline vec3 operator*( const vec3 & v, vec3::value_type_t t )
 }
 
 // Uso: 4 * V
-inline vec3 operator*( vec3::value_type_t t, const vec3 & v )
+inline vec3 operator*( vec3::value_type t, const vec3 & v )
 {
   return vec3( t * v.e[vec3::X],
                t * v.e[vec3::Y],
                t * v.e[vec3::Z] );
 }
 
-inline vec3 operator/( const vec3 & v, vec3::value_type_t t )
+inline vec3 operator/( const vec3 & v, vec3::value_type t )
 {
   return vec3( v.e[vec3::X] / t,
                v.e[vec3::Y] / t,
                v.e[vec3::Z] / t );
 }
 
-inline vec3::value_type_t dot( const vec3 & v1, const vec3 & v2 )
+inline vec3::value_type dot( const vec3 & v1, const vec3 & v2 )
 {
   return v1.e[vec3::X]*v2.e[vec3::X] +
          v1.e[vec3::Y]*v2.e[vec3::Y] +
@@ -158,7 +158,7 @@ inline vec3& vec3::operator/=( const vec3 & v )
 }
 
 // Uso: A *= 3;
-inline vec3& vec3::operator*=( const value_type_t t )
+inline vec3& vec3::operator*=( const value_type t )
 {
   e[X] *= t;
   e[Y] *= t;
@@ -168,10 +168,10 @@ inline vec3& vec3::operator*=( const value_type_t t )
 }
 
 // Uso: A /= 3;
-inline vec3& vec3::operator/=( const value_type_t t )
+inline vec3& vec3::operator/=( const value_type t )
 {
   assert( fabs( t - 0.f ) > 0.000001 );
-  value_type_t k = 1.f/t;
+  value_type k = 1.f/t;
 
   e[X] *= k;
   e[Y] *= k;
