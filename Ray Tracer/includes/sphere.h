@@ -5,11 +5,11 @@
 
 class sphere: public hitable{
 public:
-  sphere(vec3 cen, float r, material* mate): center(cen), radius(r), mat2(mate) {}
+  sphere(vec3 cen, float r, material* mate): center(cen), radius(r), material2(mate) {}
   virtual bool hit(const ray& r, float tmin, float tmax, hit_record& rec) const;
   vec3 center;
   float radius;
-  material* mat2;
+  material* material2;
 };
 
 bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
@@ -32,7 +32,7 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_record& rec) const 
       rec.t = temp;
       rec.p = r.point_at_parameter(rec.t);
       rec.normal = (rec.p - center) / radius;
-      rec.mate = mat2;
+      rec.mate = material2;
       return true;
     }
   }

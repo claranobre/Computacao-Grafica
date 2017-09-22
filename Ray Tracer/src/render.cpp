@@ -77,6 +77,9 @@ vec3 color(const ray& r, hitable *world){
     return (1.0 - t) * vec3(1.0,1.0,1.0) + t * vec3(0.5, 0.7, 1.0);
   }
 }*/
+vec3 reflect(const vec3& v, const vec3& n){
+  return v - 2 * dot(v,n) * n;
+}
 
 int main(){
   int width = 600;
@@ -90,13 +93,12 @@ int main(){
 
   arquivo << "P3\n" << width << " " << height << "\n 255\n";
 
-  camera cam;
-
   hitable *list[2];
-  list[0] = new sphere(vec3(0.3 ,0,-1), 0.5, &metal);
+  list[0] = new sphere(vec3(0 ,0,-1), 0.5, &metal);
   list[1] = new sphere(vec3(0,-100.5,-1), 100, &metal);
 
   hitable *world = new hitable_list(list,2);
+  camera cam;
 
   for(int j = height - 1; j >= 0; j--){
     for(int i = 0; i < width; i++){
@@ -105,11 +107,11 @@ int main(){
         float u = float(i + drand48()) / float(height);
         float v = float(j + drand48()) / float(width);
         ray r = cam.get_ray(u,v);
-        //vec3 p = r.point_at_parameter(2.0);
+        vec3 p = r.point_at_parameter(2.0);
         col += color(r,world);
       }
       col /= float(ns);
-      col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2])));
+      col = vec3(sqrt(col[0]), sqrt(col[1]), sqrt(col[2]));
 
       int ir = int(255.99 * col[0]);
       int ig = int(255.99 * col[1]);
