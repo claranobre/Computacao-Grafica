@@ -1,6 +1,9 @@
 #ifndef LAMBERTIANH
 #define LAMBERTIANH
 
+#include "material.h"
+#include "hitable.h"
+
 class lambertian : public material{
 public:
   lambertian(const vec3& a): albedo(a){}

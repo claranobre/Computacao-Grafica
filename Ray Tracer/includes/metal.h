@@ -1,6 +1,8 @@
 #ifndef METALH
 #define METALH
 
+#include "material.h"
+
 class metal: public material{
 public:
   metal(const vec3& a):albedo(a){}
